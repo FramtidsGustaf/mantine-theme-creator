@@ -1,5 +1,5 @@
-import { Box, Stack, Text } from "@mantine/core";
-import { HexColor, isColorBright } from "../../utils/ colorScale";
+import { Box } from "@mantine/core";
+import { HexColor } from "../../utils/ colorScale";
 
 interface ColorOutputProps {
   color: HexColor;
@@ -7,14 +7,12 @@ interface ColorOutputProps {
 }
 
 export const ColorOutput = ({ color, index }: ColorOutputProps) => {
-  const textColor = isColorBright(color) ? "black" : "white";
-
   return (
-    <Box key={index} bg={color} h="100" w="100">
-      <Stack gap={0} align="center" h="100" justify="center">
-        <Text c={textColor}>{index}</Text>
-        <Text c={textColor}>{color.toUpperCase()}</Text>
-      </Stack>
-    </Box>
+    <Box
+      key={index}
+      bg={color}
+      h={{ base: 70, sm: 100, md: 100 }}
+      w={{ base: 70, sm: 100, md: 100 }}
+    />
   );
 };

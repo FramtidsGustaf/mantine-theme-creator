@@ -35,6 +35,8 @@ import { slider } from "../../store/SliderStore";
 import { switchStore } from "../../store/SwitchStore";
 import { rating } from "../../store/RatingStore";
 import { fieldset } from "../../store/FieldsetStore";
+import { checkbox } from "../../store/CheckboxStore";
+import { chip } from "../../store/ChipStore";
 
 export const ThemeObjectOutput = () => {
   const renderComponent = (
@@ -98,6 +100,8 @@ export const ThemeObjectOutput = () => {
     ${renderComponent("Switch", switchStore)}
     ${renderComponent("Rating", rating)}
     ${renderComponent("Fieldset", fieldset)}
+    ${renderComponent("Checkbox", checkbox)}
+    ${renderComponent("Chip", chip)}
   },`.replace(/^(?:[\t ]*(?:\r?\n|\r))+/gm, "");
 
   const imports = `
@@ -131,7 +135,9 @@ export const ThemeObjectOutput = () => {
     segmentedControl.isDirty ? `, SegmentedControl` : ""
   }${slider.isDirty ? `, Slider` : ""}${switchStore.isDirty ? `, Switch` : ""}${
     rating.isDirty ? `, Rating` : ""
-  }${fieldset.isDirty ? `, Fieldset` : ""} } from "@mantine/core";`;
+  }${fieldset.isDirty ? `, Fieldset` : ""}${
+    checkbox.isDirty ? `, Checkbox` : ""
+  }${chip.isDirty ? `, Chip` : ""} } from "@mantine/core";`;
 
   const code = `
 ${imports}

@@ -16,8 +16,8 @@ export const ComponentsWrapper = ({
   return (
     <Fieldset legend={label + (isDirty ? " *" : "")}>
       <Group justify="space-between" h="100%" align="center">
-        <Center w="60%">{component}</Center>
-        <Box w={220}>
+        <Center w={{ base: "100%", md: "60%" }}>{component}</Center>
+        <Box w={{ base: "100%", md: 220 }}>
           <Stack gap={0}>{settings}</Stack>
         </Box>
       </Group>

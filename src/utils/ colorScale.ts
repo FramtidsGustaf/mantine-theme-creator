@@ -57,19 +57,3 @@ export const generateColorScale = (color: HexColor): MantineColorsTuple => {
 
   return colors as unknown as MantineColorsTuple;
 };
-
-export const isColorBright = (color: HexColor): boolean => {
-  const hexToRgb = (hex: string) => {
-    const hexCode = hex.replace("#", "");
-    const r = parseInt(hexCode.substring(0, 2), 16);
-    const g = parseInt(hexCode.substring(2, 4), 16);
-    const b = parseInt(hexCode.substring(4, 6), 16);
-
-    return { r, g, b };
-  };
-
-  const rgb = hexToRgb(color);
-  const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
-
-  return brightness > 128;
-};

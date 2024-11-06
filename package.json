@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://FramtidsGustaf.github.io/mantine-theme-creator",
+  "homepage": "https://FramtidsGustaf.github.io/mantine-theme-creator/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

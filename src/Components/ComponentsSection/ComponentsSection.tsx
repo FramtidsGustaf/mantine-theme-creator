@@ -32,6 +32,8 @@ import { MySlider } from "./MySlider/MySlider";
 import { MySwitch } from "./MySwitch/MySwitch";
 import { MyRating } from "./MyRating/MyRating";
 import { MyFieldset } from "./MyFieldset/MyFieldset";
+import { MyCheckbox } from "./MyCheckbox/MyCheckbox";
+import { MyChip } from "./MyChip/MyChip";
 
 export const ComponentsSection = () => {
   return (
@@ -39,6 +41,8 @@ export const ComponentsSection = () => {
       <SimpleGrid cols={{ base: 1, xl: 2 }}>
         <Inputs />
         <MyRadio />
+        <MyCheckbox />
+        <MyChip />
         <MySwitch />
         <Buttons />
         <MyNavLink />

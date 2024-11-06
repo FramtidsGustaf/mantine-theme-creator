@@ -1,4 +1,4 @@
-import { Group, Stack, Title } from "@mantine/core";
+import { SimpleGrid, Stack, Title } from "@mantine/core";
 import { Colors, colorTheme } from "../../store/ColorThemeStore";
 import { ColorOutput } from "../ColorOutput/ColorOutput";
 
@@ -24,7 +24,9 @@ export const ColorScale = ({ priority }: ColorScaleProps) => {
       <Title order={6} fw="normal">
         {priority.charAt(0).toUpperCase() + priority.slice(1)}
       </Title>
-      <Group gap={0}>{colorOutputs()}</Group>
+      <SimpleGrid spacing={0} cols={{ base: 5, md: 10 }}>
+        {colorOutputs()}
+      </SimpleGrid>
     </Stack>
   ) : null;
 };

@@ -46,6 +46,8 @@ import {
   Switch,
   Rating,
   Fieldset,
+  Checkbox,
+  Chip,
 } from "@mantine/core";
 import { useSignals } from "@preact/signals-react/runtime";
 
@@ -83,6 +85,8 @@ import { slider } from "../store/SliderStore";
 import { switchStore } from "../store/SwitchStore";
 import { rating } from "../store/RatingStore";
 import { fieldset } from "../store/FieldsetStore";
+import { checkbox } from "../store/CheckboxStore";
+import { chip } from "../store/ChipStore";
 
 const mntInputs = {
   TextInput,
@@ -231,6 +235,12 @@ export const useMyTheme = () => {
       }),
       Fieldset: Fieldset.extend({
         defaultProps: fieldset.getDefaultProps,
+      }),
+      Checkbox: Checkbox.extend({
+        defaultProps: checkbox.getDefaultProps,
+      }),
+      Chip: Chip.extend({
+        defaultProps: chip.getDefaultProps,
       }),
     },
   });

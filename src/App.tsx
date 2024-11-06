@@ -19,7 +19,7 @@ function App() {
             </Flex>
           </AppShell.Header>
 
-          <Container fluid px="xl" py="md">
+          <Container fluid px={{ base: "xs", sm: "xl" }} py="md">
             <ColorSection />
             <ComponentsSection />
             <ThemeObjectOutput />
