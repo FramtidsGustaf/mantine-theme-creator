@@ -1,5 +1,5 @@
 import { CodeHighlight } from "@mantine/code-highlight";
-import { Box, Fieldset, Title } from "@mantine/core";
+import { Box, Title } from "@mantine/core";
 import { colorTheme } from "../../store/ColorThemeStore";
 
 import { inputs } from "../../store/InputsStore";

@@ -1,4 +1,4 @@
-import { Alert, Select, Space, Switch } from "@mantine/core";
+import { Alert, Select, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
