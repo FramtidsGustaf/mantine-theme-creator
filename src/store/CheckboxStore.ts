@@ -15,7 +15,7 @@ const initialValues = [
   },
   {
     name: "color",
-    value: null,
+    value: "primary",
   },
   {
     name: "variant",

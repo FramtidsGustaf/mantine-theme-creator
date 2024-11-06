@@ -1,7 +1,8 @@
-import { SegmentedControl, Stack, Text, TextInput } from "@mantine/core";
+import { TextInput } from "@mantine/core";
 import { InputsProps, inputs } from "../../../store/InputsStore";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const variants = [
   { value: "default", label: "Default" },
@@ -23,16 +24,14 @@ const Component = () => {
 const Settings = () => {
   return (
     <>
-      <Stack gap={0}>
-        <Text fz="sm">Variant</Text>
-        <SegmentedControl
-          data={variants}
-          value={inputs.values[InputsProps.variant].value}
-          onChange={(value) => {
-            inputs.setValue(InputsProps.variant, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Variant"
+        data={variants}
+        value={inputs.values[InputsProps.variant].value}
+        onChange={(value) => {
+          inputs.setValue(InputsProps.variant, value);
+        }}
+      />
 
       <SizeAndRadiusSlider
         label="Size"
@@ -58,6 +57,7 @@ export const Inputs = () => {
     <ComponentsWrapper
       label="Inputs"
       isDirty={inputs.isDirty}
+      onReset={inputs.reset}
       component={<Component />}
       settings={<Settings />}
     />

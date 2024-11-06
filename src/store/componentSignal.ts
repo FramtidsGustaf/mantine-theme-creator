@@ -24,7 +24,7 @@ export const componentSignal = (
     },
 
     reset() {
-      signal.values = initialValues;
+      signal.values = [...initialValues];
     },
 
     get isDirty() {

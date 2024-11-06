@@ -26,8 +26,9 @@ const Settings = () => {
 export const MyMark = () => {
   return (
     <ComponentsWrapper
-      isDirty={mark.isDirty}
       label="Mark"
+      isDirty={mark.isDirty}
+      onReset={mark.reset}
       component={<Component />}
       settings={<Settings />}
     />

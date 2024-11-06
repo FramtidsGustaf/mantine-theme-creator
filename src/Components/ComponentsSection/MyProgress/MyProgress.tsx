@@ -2,10 +2,7 @@ import { Progress, Stack, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
-import {
-  progress,
-  ProgressProps,
-} from "../../../store/ProgressStore";
+import { progress, ProgressProps } from "../../../store/ProgressStore";
 
 const Settings = () => {
   return (
@@ -31,7 +28,7 @@ const Settings = () => {
           progress.setValue(ProgressProps.size, value);
         }}
       />
-      <Stack>
+      <Stack gap="xs" mt="xs">
         <Switch
           label="Striped"
           checked={progress.values[ProgressProps.striped].value}
@@ -60,8 +57,9 @@ const Settings = () => {
 export const MyProgress = () => {
   return (
     <ComponentsWrapper
-      isDirty={progress.isDirty}
       label="Progress"
+      isDirty={progress.isDirty}
+      onReset={progress.reset}
       component={<Progress value={50} w="100%" />}
       settings={<Settings />}
     />

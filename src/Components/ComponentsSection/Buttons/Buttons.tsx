@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Select, Stack } from "@mantine/core";
+import { ActionIcon, Button, Group, Select } from "@mantine/core";
 import { ButtonsProps, buttons } from "../../../store/ButtonsStore";
 import { IconThumbUp } from "@tabler/icons-react";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
@@ -70,23 +70,22 @@ const Settings = () => {
           buttons.setValue(ButtonsProps.variant, value);
         }}
       />
-      <Stack gap={0}>
-        <SizeAndRadiusSlider
-          label="Size"
-          value={buttons.values[ButtonsProps.size].value}
-          onChange={(value) => {
-            buttons.setValue(ButtonsProps.size, value);
-          }}
-        />
 
-        <SizeAndRadiusSlider
-          label="Radius"
-          value={buttons.values[ButtonsProps.radius].value}
-          onChange={(value) => {
-            buttons.setValue(ButtonsProps.radius, value);
-          }}
-        />
-      </Stack>
+      <SizeAndRadiusSlider
+        label="Size"
+        value={buttons.values[ButtonsProps.size].value}
+        onChange={(value) => {
+          buttons.setValue(ButtonsProps.size, value);
+        }}
+      />
+
+      <SizeAndRadiusSlider
+        label="Radius"
+        value={buttons.values[ButtonsProps.radius].value}
+        onChange={(value) => {
+          buttons.setValue(ButtonsProps.radius, value);
+        }}
+      />
     </>
   );
 };
@@ -96,6 +95,7 @@ export const Buttons = () => {
     <ComponentsWrapper
       label="Buttons"
       isDirty={buttons.isDirty}
+      onReset={buttons.reset}
       component={<Component />}
       settings={<Settings />}
     />

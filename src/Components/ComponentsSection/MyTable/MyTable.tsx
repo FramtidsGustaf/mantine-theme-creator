@@ -1,7 +1,8 @@
-import { Stack, Switch, Table } from "@mantine/core";
+import { Switch, Table } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { table, TableProps } from "../../../store/TableStore";
+import { SwitchStack } from "../SwitchStack/SwitchStack";
 
 const elements = [
   { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
@@ -46,6 +47,7 @@ const Settings = () => {
           table.setValue(TableProps.horizontalSpacing, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Vertical spacing"
         value={table.values[TableProps.verticalSpacing].value}
@@ -54,7 +56,7 @@ const Settings = () => {
         }}
       />
 
-      <Stack>
+      <SwitchStack>
         <Switch
           label="Sticky header"
           checked={table.values[TableProps.stickyHeader].value}
@@ -65,6 +67,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="Striped"
           checked={table.values[TableProps.striped].value}
@@ -72,6 +75,7 @@ const Settings = () => {
             table.setValue(TableProps.striped, event.currentTarget.checked);
           }}
         />
+
         <Switch
           label="Highlight on hover"
           checked={table.values[TableProps.highlightOnHover].value}
@@ -82,6 +86,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="With table border"
           checked={table.values[TableProps.withTableBorder].value}
@@ -92,6 +97,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="With column borders"
           checked={table.values[TableProps.withColumnBorders].value}
@@ -102,6 +108,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="With row borders"
           checked={table.values[TableProps.withRowBorders].value}
@@ -112,7 +119,7 @@ const Settings = () => {
             );
           }}
         />
-      </Stack>
+      </SwitchStack>
     </>
   );
 };
@@ -120,8 +127,9 @@ const Settings = () => {
 export const MyTable = () => {
   return (
     <ComponentsWrapper
-      isDirty={table.isDirty}
       label="Table"
+      isDirty={table.isDirty}
+      onReset={table.reset}
       component={<Component />}
       settings={<Settings />}
     />

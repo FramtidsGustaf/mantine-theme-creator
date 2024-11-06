@@ -47,6 +47,7 @@ const Settings = () => {
           badge.setValue(BadgeProps.variant, value);
         }}
       />
+
       <ColorSelect
         label="Color"
         value={badge.values[BadgeProps.color].value}
@@ -77,8 +78,9 @@ const Settings = () => {
 export const MyBadge = () => {
   return (
     <ComponentsWrapper
-      isDirty={badge.isDirty}
       label="Badge"
+      isDirty={badge.isDirty}
+      onReset={badge.reset}
       component={<Badge>Bagde</Badge>}
       settings={<Settings />}
     />

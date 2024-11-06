@@ -1,12 +1,19 @@
-import { Chip, SegmentedControl, Stack, Text } from "@mantine/core";
+import { Chip } from "@mantine/core";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { chip, ChipProps } from "../../../store/ChipStore";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   return <Chip defaultChecked>Awesome chip</Chip>;
 };
+
+const variants = [
+  { value: "filled", label: "Filled" },
+  { value: "outline", label: "Outline" },
+  { value: "light", label: "Light" },
+];
 
 const Settings = () => {
   return (
@@ -19,18 +26,12 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={2}>
-        <Text fz="sm">Variant</Text>
-        <SegmentedControl
-          data={[
-            { value: "filled", label: "Filled" },
-            { value: "outline", label: "Outline" },
-            { value: "light", label: "Light" },
-          ]}
-          value={chip.values[ChipProps.variant].value}
-          onChange={(value) => chip.setValue(ChipProps.variant, value)}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Variant"
+        data={variants}
+        value={chip.values[ChipProps.variant].value}
+        onChange={(value) => chip.setValue(ChipProps.variant, value)}
+      />
 
       <SizeAndRadiusSlider
         label="Size"
@@ -52,6 +53,7 @@ export const MyChip = () => {
     <ComponentsWrapper
       label="Chip"
       isDirty={chip.isDirty}
+      onReset={chip.reset}
       component={<Component />}
       settings={<Settings />}
     />

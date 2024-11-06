@@ -43,6 +43,7 @@ const Settings = () => {
           avatar.setValue(AvatarProps.radius, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Size"
         value={avatar.values[AvatarProps.size].value}
@@ -65,8 +66,9 @@ const Settings = () => {
 export const MyAvatar = () => {
   return (
     <ComponentsWrapper
-      isDirty={avatar.isDirty}
       label="Avatar"
+      isDirty={avatar.isDirty}
+      onReset={avatar.reset}
       component={<Avatar />}
       settings={<Settings />}
     />

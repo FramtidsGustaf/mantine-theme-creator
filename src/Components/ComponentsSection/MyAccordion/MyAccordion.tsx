@@ -1,14 +1,8 @@
-import {
-  Accordion,
-  SegmentedControl,
-  Select,
-  Stack,
-  Switch,
-  Text,
-} from "@mantine/core";
+import { Accordion, Select, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { AccordionProps, accordion } from "../../../store/AccordionStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const groceries = [
   {
@@ -95,16 +89,14 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Chevron position</Text>
-        <SegmentedControl
-          data={chevronPositions}
-          value={accordion.values[AccordionProps.chevronPosition].value}
-          onChange={(value) =>
-            accordion.setValue(AccordionProps.chevronPosition, value)
-          }
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Chevron position"
+        data={chevronPositions}
+        value={accordion.values[AccordionProps.chevronPosition].value}
+        onChange={(value) =>
+          accordion.setValue(AccordionProps.chevronPosition, value)
+        }
+      />
 
       <Switch
         mt="sm"
@@ -124,8 +116,9 @@ const Settings = () => {
 export const MyAccordion = () => {
   return (
     <ComponentsWrapper
-      isDirty={accordion.isDirty}
       label="Accordion"
+      isDirty={accordion.isDirty}
+      onReset={accordion.reset}
       component={<Component />}
       settings={<Settings />}
     />

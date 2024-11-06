@@ -1,8 +1,9 @@
-import { Rating, Slider, Stack, Switch, Text } from "@mantine/core";
+import { Rating, Switch } from "@mantine/core";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { rating, RatingProps } from "../../../store/RatingStore";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   return <Rating defaultValue={2} />;
@@ -27,18 +28,16 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Count</Text>
-        <Slider
-          label="Max value"
-          value={rating.values[RatingProps.count].value}
-          onChange={(value) => {
-            rating.setValue(RatingProps.count, value);
-          }}
-          min={1}
-          max={8}
-        />
-      </Stack>
+      <LabeledSlider
+        sliderLabel="Count"
+        label={rating.values[RatingProps.count].value}
+        value={rating.values[RatingProps.count].value}
+        onChange={(value) => {
+          rating.setValue(RatingProps.count, value);
+        }}
+        min={1}
+        max={8}
+      />
 
       <Switch
         mt="xs"
@@ -58,8 +57,9 @@ const Settings = () => {
 export const MyRating = () => {
   return (
     <ComponentsWrapper
-      isDirty={rating.isDirty}
       label="Rating"
+      isDirty={rating.isDirty}
+      onReset={rating.reset}
       component={<Component />}
       settings={<Settings />}
     />

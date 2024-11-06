@@ -1,8 +1,9 @@
-import { Box, Slider, Stack, Switch } from "@mantine/core";
+import { Box, Slider, Switch } from "@mantine/core";
 import { slider, SliderProps } from "../../../store/SliderStore";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
+import { SwitchStack } from "../SwitchStack/SwitchStack";
 
 const Component = () => {
   return (
@@ -45,7 +46,7 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap="xs" mt="xs">
+      <SwitchStack>
         <Switch
           label="Show label on hover"
           checked={slider.values[SliderProps.showLabelOnHover].value}
@@ -67,7 +68,7 @@ const Settings = () => {
             );
           }}
         />
-      </Stack>
+      </SwitchStack>
     </>
   );
 };
@@ -75,8 +76,9 @@ const Settings = () => {
 export const MySlider = () => {
   return (
     <ComponentsWrapper
-      isDirty={slider.isDirty}
       label="Slider"
+      isDirty={slider.isDirty}
+      onReset={slider.reset}
       component={<Component />}
       settings={<Settings />}
     />

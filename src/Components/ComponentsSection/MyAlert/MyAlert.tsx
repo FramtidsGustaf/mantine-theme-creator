@@ -54,8 +54,6 @@ const Settings = () => {
         onChange={(value) => alert.setValue(AlertProps.variant, value)}
       />
 
-      <Space h="xs" />
-
       <ColorSelect
         label="Color"
         value={alert.values[AlertProps.color].value}
@@ -73,6 +71,7 @@ const Settings = () => {
       />
 
       <Switch
+        mt="xs"
         label="With close button"
         checked={alert.values[AlertProps.withCloseButton].value}
         onChange={(event) =>
@@ -89,8 +88,9 @@ const Settings = () => {
 export const MyAlert = () => {
   return (
     <ComponentsWrapper
-      isDirty={alert.isDirty}
       label="Alert"
+      isDirty={alert.isDirty}
+      onReset={alert.reset}
       component={<Component />}
       settings={<Settings />}
     />

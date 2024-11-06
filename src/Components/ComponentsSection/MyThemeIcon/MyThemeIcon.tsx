@@ -80,8 +80,9 @@ const Settings = () => {
 export const MyThemeIcon = () => {
   return (
     <ComponentsWrapper
-      isDirty={themeIcon.isDirty}
       label="ThemeIcon"
+      isDirty={themeIcon.isDirty}
+      onReset={themeIcon.reset}
       component={<Component />}
       settings={<Settings />}
     />

@@ -1,7 +1,9 @@
-import { Radio, SegmentedControl, Stack, Text } from "@mantine/core";
+import { Radio } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { newRadio, RadioProps } from "../../../store/RadioStore";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
+import { ColorSelect } from "../../ColorSelect/ColorSelect";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   return <Radio label="Radio" />;
@@ -32,16 +34,12 @@ const variants = [
 const Settings = () => {
   return (
     <>
-      <Stack gap={2}>
-        <Text size="sm">Label position</Text>
-        <SegmentedControl
-          data={labelPositions}
-          value={newRadio.values[RadioProps.labelPosition].value}
-          onChange={(value) =>
-            newRadio.setValue(RadioProps.labelPosition, value)
-          }
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Label position"
+        data={labelPositions}
+        value={newRadio.values[RadioProps.labelPosition].value}
+        onChange={(value) => newRadio.setValue(RadioProps.labelPosition, value)}
+      />
 
       <SizeAndRadiusSlider
         label="Size"
@@ -51,16 +49,22 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={2}>
-        <Text size="sm">Variant</Text>
-        <SegmentedControl
-          data={variants}
-          value={newRadio.values[RadioProps.variant].value}
-          onChange={(value) => {
-            newRadio.setValue(RadioProps.variant, value);
-          }}
-        />
-      </Stack>
+      <ColorSelect
+        label="Color"
+        value={newRadio.values[RadioProps.color].value}
+        onChange={(value) => {
+          newRadio.setValue(RadioProps.color, value);
+        }}
+      />
+
+      <LabeledSegmentedControl
+        label="Variant"
+        data={variants}
+        value={newRadio.values[RadioProps.variant].value}
+        onChange={(value) => {
+          newRadio.setValue(RadioProps.variant, value);
+        }}
+      />
     </>
   );
 };
@@ -68,8 +72,9 @@ const Settings = () => {
 export const MyRadio = () => {
   return (
     <ComponentsWrapper
-      isDirty={newRadio.isDirty}
       label="Radio"
+      isDirty={newRadio.isDirty}
+      onReset={newRadio.reset}
       component={<Component />}
       settings={<Settings />}
     />

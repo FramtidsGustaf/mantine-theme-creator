@@ -1,9 +1,10 @@
-import { Blockquote, Slider, Stack, Text } from "@mantine/core";
+import { Blockquote } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { BlockquoteProps, blockquote } from "../../../store/BlockquoteStore";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   const icon = <IconInfoCircle />;
@@ -24,6 +25,7 @@ const Settings = () => {
           blockquote.setValue(BlockquoteProps.color, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Radius"
         value={blockquote.values[BlockquoteProps.radius].value}
@@ -31,17 +33,16 @@ const Settings = () => {
           blockquote.setValue(BlockquoteProps.radius, value);
         }}
       />
-      <Stack gap={0}>
-        <Text size="sm">Icon size</Text>
-        <Slider
-          min={30}
-          max={60}
-          value={blockquote.values[BlockquoteProps.iconSize].value}
-          onChange={(value) => {
-            blockquote.setValue(BlockquoteProps.iconSize, value);
-          }}
-        />
-      </Stack>
+
+      <LabeledSlider
+        sliderLabel="Icon size"
+        min={30}
+        max={60}
+        value={blockquote.values[BlockquoteProps.iconSize].value}
+        onChange={(value) => {
+          blockquote.setValue(BlockquoteProps.iconSize, value);
+        }}
+      />
     </>
   );
 };
@@ -49,8 +50,9 @@ const Settings = () => {
 export const MyBlockquote = () => {
   return (
     <ComponentsWrapper
-      isDirty={blockquote.isDirty}
       label="Blockquote"
+      isDirty={blockquote.isDirty}
+      onReset={blockquote.reset}
       component={<Component />}
       settings={<Settings />}
     />

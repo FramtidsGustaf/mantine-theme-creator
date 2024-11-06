@@ -25,6 +25,7 @@ const Settings = () => {
           paper.setValue(PaperProps.shadow, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Radius"
         value={paper.values[PaperProps.radius].value}
@@ -32,7 +33,9 @@ const Settings = () => {
           paper.setValue(PaperProps.radius, value);
         }}
       />
+
       <Switch
+        mt="xs"
         label="With border"
         checked={paper.values[PaperProps.withBorder].value}
         onChange={(event) => {
@@ -46,8 +49,9 @@ const Settings = () => {
 export const MyPaper = () => {
   return (
     <ComponentsWrapper
-      isDirty={paper.isDirty}
       label="Paper"
+      isDirty={paper.isDirty}
+      onReset={paper.reset}
       component={<Component />}
       settings={<Settings />}
     />

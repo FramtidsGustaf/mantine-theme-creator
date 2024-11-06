@@ -16,6 +16,7 @@
     "@mantine/code-highlight": "^7.13.4",
     "@mantine/core": "^7.13.4",
     "@mantine/hooks": "^7.13.4",
+    "@mantine/modals": "^7.13.4",
     "@preact/signals-react": "^2.2.0",
     "@tabler/icons-react": "^3.21.0",
     "deepsignal": "^1.5.0",

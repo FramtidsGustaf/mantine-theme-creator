@@ -5,7 +5,8 @@ import {
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
-import { Notification, Stack, Switch } from "@mantine/core";
+import { Notification, Switch } from "@mantine/core";
+import { SwitchStack } from "../SwitchStack/SwitchStack";
 
 const Component = () => {
   return (
@@ -25,6 +26,7 @@ const Settings = () => {
           notification.setValue(NotificationProps.color, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Radius"
         value={notification.values[NotificationProps.radius].value}
@@ -32,12 +34,11 @@ const Settings = () => {
           notification.setValue(NotificationProps.radius, value);
         }}
       />
-      <Stack>
+
+      <SwitchStack>
         <Switch
           label="With close button"
-          checked={
-            notification.values[NotificationProps.withCloseButton].value
-          }
+          checked={notification.values[NotificationProps.withCloseButton].value}
           onChange={(event) => {
             notification.setValue(
               NotificationProps.withCloseButton,
@@ -45,6 +46,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="With border"
           checked={notification.values[NotificationProps.withBorder].value}
@@ -55,7 +57,7 @@ const Settings = () => {
             );
           }}
         />
-      </Stack>
+      </SwitchStack>
     </>
   );
 };
@@ -63,8 +65,9 @@ const Settings = () => {
 export const MyNotification = () => {
   return (
     <ComponentsWrapper
-      isDirty={notification.isDirty}
       label="Notification"
+      isDirty={notification.isDirty}
+      onReset={notification.reset}
       component={<Component />}
       settings={<Settings />}
     />

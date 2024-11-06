@@ -1,4 +1,4 @@
-import { Button, Select, Stack, Switch, Tooltip } from "@mantine/core";
+import { Button, Select, Switch, Tooltip } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { tooltip, TooltipProps } from "../../../store/TooltipStore";
 
@@ -63,7 +63,7 @@ const positions = [
 
 const Settings = () => {
   return (
-    <Stack>
+    <>
       <Select
         data={positions}
         label="Position"
@@ -73,24 +73,23 @@ const Settings = () => {
         }}
       />
       <Switch
+        mt="xs"
         label="With arrow"
         checked={tooltip.values[TooltipProps.withArrow].value}
         onChange={(event) => {
-          tooltip.setValue(
-            TooltipProps.withArrow,
-            event.currentTarget.checked
-          );
+          tooltip.setValue(TooltipProps.withArrow, event.currentTarget.checked);
         }}
       />
-    </Stack>
+    </>
   );
 };
 
 export const MyToolTip = () => {
   return (
     <ComponentsWrapper
-      isDirty={tooltip.isDirty}
       label="Tooltip"
+      isDirty={tooltip.isDirty}
+      onReset={tooltip.reset}
       component={<Component />}
       settings={<Settings />}
     />

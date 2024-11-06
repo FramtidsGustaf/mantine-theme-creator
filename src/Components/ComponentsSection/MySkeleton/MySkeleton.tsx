@@ -28,8 +28,9 @@ const Settings = () => {
 export const MySkeleton = () => {
   return (
     <ComponentsWrapper
-      isDirty={skeleton.isDirty}
       label="Skeleton"
+      isDirty={skeleton.isDirty}
+      onReset={skeleton.reset}
       component={<Component />}
       settings={<Settings />}
     />

@@ -13,7 +13,7 @@ export const SizeAndRadiusSlider = ({
   label,
 }: SizeAndRadiusSliderProps) => {
   return (
-    <Stack gap={0} mt="xs" mb="xl">
+    <Stack gap={0} mt={3} mb="lg">
       <Text fz="sm">{label}</Text>
       <Slider
         marks={Marks}

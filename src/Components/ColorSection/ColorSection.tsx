@@ -1,4 +1,4 @@
-import { Fieldset, SimpleGrid, Stack } from "@mantine/core";
+import { Box, SimpleGrid, Stack, Title } from "@mantine/core";
 import { MyColorInput } from "../MyColorInput/MyColorInput";
 import { ColorScale } from "../ColorsScale/ColorsScale";
 import { LuminanceSlider } from "../LuminanceSlider/LuminanceSlider";
@@ -6,7 +6,8 @@ import { ShadeSlider } from "../ShadeSlider/ShadeSlider";
 
 export const ColorSection = () => {
   return (
-    <Fieldset legend="Theme Colors">
+    <Box>
+      <Title order={2}>Colors</Title>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 5 }}>
         <MyColorInput
           label="Primary Color"
@@ -75,6 +76,6 @@ export const ColorSection = () => {
         <ColorScale priority="dark" />
         <ColorScale priority="gray" />
       </Stack>
-    </Fieldset>
+    </Box>
   );
 };

@@ -1,13 +1,8 @@
-import {
-  Fieldset,
-  SegmentedControl,
-  Stack,
-  Text,
-  TextInput,
-} from "@mantine/core";
+import { Fieldset, TextInput } from "@mantine/core";
 import { fieldset, FieldsetProps } from "../../../store/FieldsetStore";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   return (
@@ -18,25 +13,26 @@ const Component = () => {
   );
 };
 
+const variants = [
+  { value: "default", label: "Default" },
+  { value: "filled", label: "Filled" },
+  {
+    value: "unstyled",
+    label: "Unstyled",
+  },
+];
+
 const Settings = () => {
   return (
     <>
-      <Stack gap={0}>
-        <Text size="sm">Variant</Text>
-        <SegmentedControl
-          fullWidth
-          data={[
-            { value: "default", label: "Default" },
-            { value: "filled", label: "Filled" },
-            {
-              value: "unstyled",
-              label: "Unstyled",
-            },
-          ]}
-          value={fieldset.values[FieldsetProps.variant].value}
-          onChange={(value) => fieldset.setValue(FieldsetProps.variant, value)}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Variant"
+        fullWidth
+        data={variants}
+        value={fieldset.values[FieldsetProps.variant].value}
+        onChange={(value) => fieldset.setValue(FieldsetProps.variant, value)}
+      />
+
       <SizeAndRadiusSlider
         label="Radius"
         value={fieldset.values[FieldsetProps.radius].value}
@@ -50,9 +46,10 @@ export const MyFieldset = () => {
   return (
     <ComponentsWrapper
       label="Fieldset"
+      isDirty={fieldset.isDirty}
+      onReset={fieldset.reset}
       component={<Component />}
       settings={<Settings />}
-      isDirty={fieldset.isDirty}
     />
   );
 };

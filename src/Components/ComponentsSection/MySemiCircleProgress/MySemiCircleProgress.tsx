@@ -1,16 +1,12 @@
-import {
-  SegmentedControl,
-  SemiCircleProgress,
-  Slider,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { SemiCircleProgress } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import {
   semiCircleProgress,
   SemiCircleProgressProps,
 } from "../../../store/SemiCircleProgressStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   return <SemiCircleProgress value={40} size={200} label="Label" />;
@@ -40,78 +36,65 @@ const orientation = [
 
 const Settings = () => {
   return (
-    <Stack gap="xs">
-      <Stack gap={0}>
-        <Text fz="sm">Fill direction</Text>
-        <SegmentedControl
-          data={fillDirections}
-          value={
-            semiCircleProgress.values[SemiCircleProgressProps.fillDirection]
-              .value
-          }
-          onChange={(value) => {
-            semiCircleProgress.setValue(
-              SemiCircleProgressProps.fillDirection,
-              value
-            );
-          }}
-        />
-      </Stack>
+    <>
+      <LabeledSegmentedControl
+        label="Fill direction"
+        data={fillDirections}
+        value={
+          semiCircleProgress.values[SemiCircleProgressProps.fillDirection].value
+        }
+        onChange={(value) => {
+          semiCircleProgress.setValue(
+            SemiCircleProgressProps.fillDirection,
+            value
+          );
+        }}
+      />
 
-      <Stack gap={0}>
-        <Text fz="sm">Orientation</Text>
-        <SegmentedControl
-          data={orientation}
-          value={
-            semiCircleProgress.values[SemiCircleProgressProps.orientation]
-              .value
-          }
-          onChange={(value) => {
-            semiCircleProgress.setValue(
-              SemiCircleProgressProps.orientation,
-              value
-            );
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Orientation"
+        data={orientation}
+        value={
+          semiCircleProgress.values[SemiCircleProgressProps.orientation].value
+        }
+        onChange={(value) => {
+          semiCircleProgress.setValue(
+            SemiCircleProgressProps.orientation,
+            value
+          );
+        }}
+      />
 
       <ColorSelect
         label="Color"
-        value={
-          semiCircleProgress.values[SemiCircleProgressProps.color].value
-        }
+        value={semiCircleProgress.values[SemiCircleProgressProps.color].value}
         onChange={(value) => {
           semiCircleProgress.setValue(SemiCircleProgressProps.color, value);
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Thickness</Text>
-        <Slider
-          max={20}
-          min={1}
-          label={(value) => value}
-          value={
-            semiCircleProgress.values[SemiCircleProgressProps.thickness]
-              .value
-          }
-          onChange={(value) => {
-            semiCircleProgress.setValue(
-              SemiCircleProgressProps.thickness,
-              value
-            );
-          }}
-        />
-      </Stack>
-    </Stack>
+      <LabeledSlider
+        sliderLabel="Thickness"
+        max={20}
+        min={1}
+        label={(value) => value}
+        value={
+          semiCircleProgress.values[SemiCircleProgressProps.thickness].value
+        }
+        onChange={(value) => {
+          semiCircleProgress.setValue(SemiCircleProgressProps.thickness, value);
+        }}
+      />
+    </>
   );
 };
 
 export const MySemiCircleProgress = () => {
   return (
     <ComponentsWrapper
-      isDirty={semiCircleProgress.isDirty}
       label="SemiCircleProgress"
+      isDirty={semiCircleProgress.isDirty}
+      onReset={semiCircleProgress.reset}
       component={<Component />}
       settings={<Settings />}
     />

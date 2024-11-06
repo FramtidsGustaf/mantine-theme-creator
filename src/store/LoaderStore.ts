@@ -12,4 +12,4 @@ const initialValues = [
   { name: "type", value: "oval" },
 ];
 
-export const newLoader = componentSignal(initialValues);
+export const loader = componentSignal(initialValues);

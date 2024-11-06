@@ -48,6 +48,7 @@ import {
   Fieldset,
   Checkbox,
   Chip,
+  Pill,
 } from "@mantine/core";
 import { useSignals } from "@preact/signals-react/runtime";
 
@@ -59,7 +60,7 @@ import { pagination } from "../store/PaginationStore";
 import { stepper } from "../store/StepperStore";
 import { tabs } from "../store/TabsStore";
 import { alert } from "../store/AlertStore";
-import { newLoader } from "../store/LoaderStore";
+import { loader } from "../store/LoaderStore";
 import { notification } from "../store/NotificationStore";
 import { progress } from "../store/ProgressStore";
 import { ringProgress } from "../store/RingProgressStore";
@@ -87,6 +88,7 @@ import { rating } from "../store/RatingStore";
 import { fieldset } from "../store/FieldsetStore";
 import { checkbox } from "../store/CheckboxStore";
 import { chip } from "../store/ChipStore";
+import { pill } from "../store/ PillStore";
 
 const mntInputs = {
   TextInput,
@@ -159,7 +161,7 @@ export const useMyTheme = () => {
         defaultProps: alert.getDefaultProps,
       }),
       Loader: Loader.extend({
-        defaultProps: newLoader.getDefaultProps,
+        defaultProps: loader.getDefaultProps,
       }),
       Notification: Notification.extend({
         defaultProps: notification.getDefaultProps,
@@ -241,6 +243,9 @@ export const useMyTheme = () => {
       }),
       Chip: Chip.extend({
         defaultProps: chip.getDefaultProps,
+      }),
+      Pill: Pill.extend({
+        defaultProps: pill.getDefaultProps,
       }),
     },
   });

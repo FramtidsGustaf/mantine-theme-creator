@@ -1,13 +1,4 @@
-import {
-  Menu,
-  Button,
-  rem,
-  Text,
-  Select,
-  Stack,
-  Slider,
-  Switch,
-} from "@mantine/core";
+import { Menu, Button, rem, Text, Select, Switch } from "@mantine/core";
 import {
   IconSettings,
   IconMessageCircle,
@@ -19,6 +10,7 @@ import {
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { useDisclosure } from "@mantine/hooks";
 import { MenuProps, menu } from "../../../store/MenuStore";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -152,7 +144,7 @@ const arrowPositions = [
 
 const Settings = () => {
   return (
-    <Stack gap="xs">
+    <>
       <Select
         data={positions}
         label="Position"
@@ -163,19 +155,19 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Offset</Text>
-        <Slider
-          max={20}
-          min={-20}
-          value={menu.values[MenuProps.offset].value}
-          onChange={(value) => {
-            menu.setValue(MenuProps.offset, value);
-          }}
-        />
-      </Stack>
+      <LabeledSlider
+        sliderLabel="Offset"
+        max={20}
+        min={-20}
+        value={menu.values[MenuProps.offset].value}
+        onChange={(value) => {
+          menu.setValue(MenuProps.offset, value);
+        }}
+      />
 
       <Switch
+        mt="xs"
+        mb={4}
         label="With arrow"
         checked={menu.values[MenuProps.withArrow].value}
         onChange={(event) => {
@@ -192,15 +184,16 @@ const Settings = () => {
           menu.setValue(MenuProps.arrowPosition, value);
         }}
       />
-    </Stack>
+    </>
   );
 };
 
 export const MyMenu = () => {
   return (
     <ComponentsWrapper
-      isDirty={menu.isDirty}
       label="Menu"
+      isDirty={menu.isDirty}
+      onReset={menu.reset}
       component={<Component />}
       settings={<Settings />}
     />

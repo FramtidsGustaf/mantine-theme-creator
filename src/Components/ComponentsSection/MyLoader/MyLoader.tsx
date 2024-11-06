@@ -1,8 +1,9 @@
-import { Text, Loader, Stack, SegmentedControl } from "@mantine/core";
+import { Loader } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
-import { LoaderProps, newLoader } from "../../../store/LoaderStore";
+import { LoaderProps, loader } from "../../../store/LoaderStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const types = [
   {
@@ -24,30 +25,28 @@ const Settings = () => {
     <>
       <ColorSelect
         label="Color"
-        value={newLoader.values[LoaderProps.color].value}
+        value={loader.values[LoaderProps.color].value}
         onChange={(value) => {
-          newLoader.setValue(LoaderProps.color, value);
+          loader.setValue(LoaderProps.color, value);
         }}
       />
 
       <SizeAndRadiusSlider
         label="Size"
-        value={newLoader.values[LoaderProps.size].value}
+        value={loader.values[LoaderProps.size].value}
         onChange={(value) => {
-          newLoader.setValue(LoaderProps.size, value);
+          loader.setValue(LoaderProps.size, value);
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Type</Text>
-        <SegmentedControl
-          data={types}
-          value={newLoader.values[LoaderProps.type].value}
-          onChange={(value) => {
-            newLoader.setValue(LoaderProps.type, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Type"
+        data={types}
+        value={loader.values[LoaderProps.type].value}
+        onChange={(value) => {
+          loader.setValue(LoaderProps.type, value);
+        }}
+      />
     </>
   );
 };
@@ -55,8 +54,9 @@ const Settings = () => {
 export const MyLoader = () => {
   return (
     <ComponentsWrapper
-      isDirty={newLoader.isDirty}
       label="Loader"
+      isDirty={loader.isDirty}
+      onReset={loader.reset}
       component={<Loader />}
       settings={<Settings />}
     />

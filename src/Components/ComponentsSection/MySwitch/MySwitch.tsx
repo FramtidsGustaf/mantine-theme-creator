@@ -1,8 +1,9 @@
-import { SegmentedControl, Stack, Switch, Text } from "@mantine/core";
+import { Switch } from "@mantine/core";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SwitchProps, switchStore } from "../../../store/SwitchStore";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   return <Switch label="I agree to sell my privacy" />;
@@ -19,19 +20,17 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={2} mt="xs">
-        <Text fz="sm">Label position</Text>
-        <SegmentedControl
-          data={[
-            { label: "Left", value: "left" },
-            { label: "Right", value: "right" },
-          ]}
-          value={switchStore.values[SwitchProps.labelPosition].value}
-          onChange={(value) => {
-            switchStore.setValue(SwitchProps.labelPosition, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Label position"
+        data={[
+          { label: "Left", value: "left" },
+          { label: "Right", value: "right" },
+        ]}
+        value={switchStore.values[SwitchProps.labelPosition].value}
+        onChange={(value) => {
+          switchStore.setValue(SwitchProps.labelPosition, value);
+        }}
+      />
 
       <SizeAndRadiusSlider
         label="Size"
@@ -55,8 +54,9 @@ const Settings = () => {
 export const MySwitch = () => {
   return (
     <ComponentsWrapper
-      isDirty={switchStore.isDirty}
       label="Switch"
+      isDirty={switchStore.isDirty}
+      onReset={switchStore.reset}
       component={<Component />}
       settings={<Settings />}
     />

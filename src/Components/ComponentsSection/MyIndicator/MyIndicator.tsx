@@ -1,16 +1,9 @@
-import {
-  Avatar,
-  Indicator,
-  Select,
-  Slider,
-  Stack,
-  Switch,
-  Text,
-} from "@mantine/core";
+import { Avatar, Indicator, Select, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { IndicatorProps, indicator } from "../../../store/IndicatorStore";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   return (
@@ -69,6 +62,7 @@ const Settings = () => {
           indicator.setValue(IndicatorProps.color, value);
         }}
       />
+
       <Select
         data={positions}
         label="Position"
@@ -78,6 +72,7 @@ const Settings = () => {
           indicator.setValue(IndicatorProps.position, value);
         }}
       />
+
       <SizeAndRadiusSlider
         label="Radius"
         value={indicator.values[IndicatorProps.radius].value}
@@ -85,19 +80,19 @@ const Settings = () => {
           indicator.setValue(IndicatorProps.radius, value);
         }}
       />
-      <Stack gap={0}>
-        <Text fz="sm">Size</Text>
-        <Slider
-          min={6}
-          max={30}
-          value={indicator.values[IndicatorProps.size].value}
-          onChange={(value) => {
-            indicator.setValue(IndicatorProps.size, value);
-          }}
-        />
-      </Stack>
+
+      <LabeledSlider
+        sliderLabel="Size"
+        min={6}
+        max={30}
+        value={indicator.values[IndicatorProps.size].value}
+        onChange={(value) => {
+          indicator.setValue(IndicatorProps.size, value);
+        }}
+      />
+
       <Switch
-        mt="sm"
+        mt="xs"
         label="With border"
         checked={indicator.values[IndicatorProps.withBorder].value}
         onChange={(event) => {
@@ -114,8 +109,9 @@ const Settings = () => {
 export const MyIndicator = () => {
   return (
     <ComponentsWrapper
-      isDirty={indicator.isDirty}
       label="Indicator"
+      isDirty={indicator.isDirty}
+      onReset={indicator.reset}
       component={<Component />}
       settings={<Settings />}
     />

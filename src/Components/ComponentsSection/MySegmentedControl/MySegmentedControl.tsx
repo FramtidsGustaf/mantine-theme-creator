@@ -1,4 +1,4 @@
-import { SegmentedControl, Stack, Switch, Text } from "@mantine/core";
+import { SegmentedControl, Switch } from "@mantine/core";
 import {
   segmentedControl,
   SegmentedControlProps,
@@ -6,6 +6,8 @@ import {
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
+import { SwitchStack } from "../SwitchStack/SwitchStack";
 
 const Component = () => {
   return <SegmentedControl data={["React", "Angular", "Vue"]} />;
@@ -14,19 +16,16 @@ const Component = () => {
 const Settings = () => {
   return (
     <>
-      <Stack gap={2}>
-        <Text fz="sm">Orientation</Text>
-        <SegmentedControl
-          data={["horizontal", "vertical"]}
-          value={
-            segmentedControl.values[SegmentedControlProps.orientation].value
-          }
-          onChange={(value) => {
-            segmentedControl.setValue(SegmentedControlProps.orientation, value);
-          }}
-        />
-      </Stack>
-      <Stack gap="xs" mt="xs">
+      <LabeledSegmentedControl
+        label="Orientation"
+        data={["horizontal", "vertical"]}
+        value={segmentedControl.values[SegmentedControlProps.orientation].value}
+        onChange={(value) => {
+          segmentedControl.setValue(SegmentedControlProps.orientation, value);
+        }}
+      />
+
+      <SwitchStack>
         <Switch
           label="Full width"
           checked={
@@ -39,6 +38,7 @@ const Settings = () => {
             );
           }}
         />
+
         <Switch
           label="With items border"
           checked={
@@ -52,7 +52,8 @@ const Settings = () => {
             );
           }}
         />
-      </Stack>
+      </SwitchStack>
+
       <SizeAndRadiusSlider
         label="Size"
         value={segmentedControl.values[SegmentedControlProps.size].value}
@@ -83,8 +84,9 @@ const Settings = () => {
 export const MySegmentedControl = () => {
   return (
     <ComponentsWrapper
-      isDirty={segmentedControl.isDirty}
       label="SegmentedControl"
+      isDirty={segmentedControl.isDirty}
+      onReset={segmentedControl.reset}
       component={<Component />}
       settings={<Settings />}
     />

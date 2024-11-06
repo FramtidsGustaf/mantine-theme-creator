@@ -1,11 +1,4 @@
-import {
-  Timeline,
-  Text,
-  Switch,
-  Stack,
-  Slider,
-  SegmentedControl,
-} from "@mantine/core";
+import { Timeline, Text, Switch } from "@mantine/core";
 import {
   IconGitBranch,
   IconGitCommit,
@@ -16,16 +9,18 @@ import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { timeline, TimelineProps } from "../../../store/TimelineStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   return (
-    <Timeline active={1} bulletSize={24} lineWidth={2}>
+    <Timeline active={1}>
       <Timeline.Item bullet={<IconGitBranch size={12} />} title="New branch">
         <Text c="dimmed" size="sm">
-          You&apos;ve created new branch{" "}
+          You&apos;ve created new branch
           <Text variant="link" component="span" inherit>
             fix-notifications
-          </Text>{" "}
+          </Text>
           from master
         </Text>
         <Text size="xs" mt={4}>
@@ -107,6 +102,8 @@ const Settings = () => {
       />
 
       <Switch
+        mt="xs"
+        mb={3}
         label="Reverse active"
         checked={timeline.values[TimelineProps.reverseActive].value}
         onChange={(event) => {
@@ -117,40 +114,36 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={0} mt="xs">
-        <Text size="sm">Line width</Text>
-        <Slider
-          min={1}
-          max={6}
-          value={timeline.values[TimelineProps.lineWidth].value}
-          onChange={(value) => {
-            timeline.setValue(TimelineProps.lineWidth, value);
-          }}
-        />
-      </Stack>
+      <LabeledSlider
+        sliderLabel="Line width"
+        label={timeline.values[TimelineProps.lineWidth].value}
+        min={1}
+        max={6}
+        value={timeline.values[TimelineProps.lineWidth].value}
+        onChange={(value) => {
+          timeline.setValue(TimelineProps.lineWidth, value);
+        }}
+      />
 
-      <Stack gap={0} mt="xs">
-        <Text size="sm">Bullet size</Text>
-        <Slider
-          min={18}
-          max={40}
-          value={timeline.values[TimelineProps.bulletSize].value}
-          onChange={(value) => {
-            timeline.setValue(TimelineProps.bulletSize, value);
-          }}
-        />
-      </Stack>
+      <LabeledSlider
+        sliderLabel="Bullet size"
+        label={timeline.values[TimelineProps.bulletSize].value}
+        min={18}
+        max={40}
+        value={timeline.values[TimelineProps.bulletSize].value}
+        onChange={(value) => {
+          timeline.setValue(TimelineProps.bulletSize, value);
+        }}
+      />
 
-      <Stack gap={0} mt="xs">
-        <Text size="sm">Align</Text>
-        <SegmentedControl
-          data={align}
-          value={timeline.values[TimelineProps.align].value}
-          onChange={(value) => {
-            timeline.setValue(TimelineProps.align, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Align"
+        data={align}
+        value={timeline.values[TimelineProps.align].value}
+        onChange={(value) => {
+          timeline.setValue(TimelineProps.align, value);
+        }}
+      />
     </>
   );
 };
@@ -158,8 +151,9 @@ const Settings = () => {
 export const MyTimeline = () => {
   return (
     <ComponentsWrapper
-      isDirty={timeline.isDirty}
       label="Timeline"
+      isDirty={timeline.isDirty}
+      onReset={timeline.reset}
       component={<Component />}
       settings={<Settings />}
     />

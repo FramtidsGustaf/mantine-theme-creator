@@ -1,4 +1,4 @@
-import { Fieldset, SimpleGrid } from "@mantine/core";
+import { Box, SimpleGrid, Title } from "@mantine/core";
 import { Inputs } from "./Inputs/Inputs";
 import { Buttons } from "./Buttons/Buttons";
 import { MyNavLink } from "./MyNavLink/MyNavLink";
@@ -34,16 +34,23 @@ import { MyRating } from "./MyRating/MyRating";
 import { MyFieldset } from "./MyFieldset/MyFieldset";
 import { MyCheckbox } from "./MyCheckbox/MyCheckbox";
 import { MyChip } from "./MyChip/MyChip";
+import { MyPill } from "./MyPill/MyPill";
 
 export const ComponentsSection = () => {
   return (
-    <Fieldset legend="Components">
-      <SimpleGrid cols={{ base: 1, xl: 2 }}>
-        <Inputs />
-        <MyRadio />
+    <Box>
+      <Title order={2}>Components</Title>
+      <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="xs">
         <MyCheckbox />
         <MyChip />
+        <MyFieldset />
+        <Inputs />
+        <MyRadio />
+        <MyRating />
+        <MySegmentedControl />
+        <MySlider />
         <MySwitch />
+        <MyPill />
         <Buttons />
         <MyNavLink />
         <MyPagination />
@@ -70,11 +77,7 @@ export const ComponentsSection = () => {
         <MyMark />
         <MyTable />
         <MyPaper />
-        <MySegmentedControl />
-        <MySlider />
-        <MyRating />
-        <MyFieldset />
       </SimpleGrid>
-    </Fieldset>
+    </Box>
   );
 };

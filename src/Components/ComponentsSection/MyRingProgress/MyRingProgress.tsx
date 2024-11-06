@@ -1,9 +1,10 @@
-import { RingProgress, Slider, Stack, Switch, Text } from "@mantine/core";
+import { RingProgress, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import {
   ringProgress,
   RingProgressProps,
 } from "../../../store/RingProgressStore";
+import { LabeledSlider } from "../../LabeledSlider/LabeledSlider";
 
 const Component = () => {
   return (
@@ -28,20 +29,20 @@ const Component = () => {
 
 const Settings = () => {
   return (
-    <Stack>
-      <Stack gap={0}>
-        <Text fz="sm">Thickness</Text>
-        <Slider
-          max={40}
-          min={1}
-          label={(value) => value}
-          value={ringProgress.values[RingProgressProps.thickness].value}
-          onChange={(value) => {
-            ringProgress.setValue(RingProgressProps.thickness, value);
-          }}
-        />
-      </Stack>
+    <>
+      <LabeledSlider
+        sliderLabel="Thickness"
+        max={40}
+        min={1}
+        label={(value) => value}
+        value={ringProgress.values[RingProgressProps.thickness].value}
+        onChange={(value) => {
+          ringProgress.setValue(RingProgressProps.thickness, value);
+        }}
+      />
+
       <Switch
+        mt="xs"
         label="Round caps"
         checked={ringProgress.values[RingProgressProps.roundCaps].value}
         onChange={(event) => {
@@ -51,15 +52,16 @@ const Settings = () => {
           );
         }}
       />
-    </Stack>
+    </>
   );
 };
 
 export const MyRingProgress = () => {
   return (
     <ComponentsWrapper
-      isDirty={ringProgress.isDirty}
       label="RingProgress"
+      isDirty={ringProgress.isDirty}
+      onReset={ringProgress.reset}
       component={<Component />}
       settings={<Settings />}
     />

@@ -1,7 +1,8 @@
-import { List, SegmentedControl, Stack, Switch, Text } from "@mantine/core";
+import { List, Switch } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { ListProps, list } from "../../../store/ListStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   return (
@@ -31,16 +32,15 @@ const types = [
 const Settings = () => {
   return (
     <>
-      <Stack gap={2}>
-        <Text size="sm">Type</Text>
-        <SegmentedControl
-          data={types}
-          value={list.values[ListProps.type].value}
-          onChange={(value) => {
-            list.setValue(ListProps.type, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Type"
+        data={types}
+        value={list.values[ListProps.type].value}
+        onChange={(value) => {
+          list.setValue(ListProps.type, value);
+        }}
+      />
+
       <SizeAndRadiusSlider
         label="Size"
         value={list.values[ListProps.size].value}
@@ -48,7 +48,9 @@ const Settings = () => {
           list.setValue(ListProps.size, value);
         }}
       />
+
       <Switch
+        mt="xs"
         label="With padding"
         checked={list.values[ListProps.withPadding].value}
         onChange={(event) => {
@@ -62,8 +64,9 @@ const Settings = () => {
 export const MyList = () => {
   return (
     <ComponentsWrapper
-      isDirty={list.isDirty}
       label="List"
+      isDirty={list.isDirty}
+      onReset={list.reset}
       component={<Component />}
       settings={<Settings />}
     />

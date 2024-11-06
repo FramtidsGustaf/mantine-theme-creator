@@ -26,8 +26,9 @@ const Settings = () => {
 export const MyHighlight = () => {
   return (
     <ComponentsWrapper
-      isDirty={highlight.isDirty}
       label="Highlight"
+      isDirty={highlight.isDirty}
+      onReset={highlight.reset}
       component={<Component />}
       settings={<Settings />}
     />

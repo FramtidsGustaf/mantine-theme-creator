@@ -1,4 +1,4 @@
-import { rem, SegmentedControl, Stack, Tabs, Text } from "@mantine/core";
+import { rem, Tabs } from "@mantine/core";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 import {
   IconPhoto,
@@ -8,6 +8,7 @@ import {
 import { ColorSelect } from "../../ColorSelect/ColorSelect";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
 import { tabs, TabsProps } from "../../../store/TabsStore";
+import { LabeledSegmentedControl } from "../../LabeledSegmentedControl/LabeledSegmentedControl";
 
 const Component = () => {
   const iconStyle = { width: rem(12), height: rem(12) };
@@ -62,16 +63,15 @@ const Settings = () => {
           tabs.setValue(TabsProps.color, value);
         }}
       />
-      <Stack gap={0} mt="sm">
-        <Text fz="sm">Variant</Text>
-        <SegmentedControl
-          data={variants}
-          value={tabs.values[TabsProps.variant].value}
-          onChange={(value) => {
-            tabs.setValue(TabsProps.variant, value);
-          }}
-        />
-      </Stack>
+
+      <LabeledSegmentedControl
+        label="Variant"
+        data={variants}
+        value={tabs.values[TabsProps.variant].value}
+        onChange={(value) => {
+          tabs.setValue(TabsProps.variant, value);
+        }}
+      />
 
       <SizeAndRadiusSlider
         label="Radius"
@@ -81,16 +81,14 @@ const Settings = () => {
         }}
       />
 
-      <Stack gap={0}>
-        <Text fz="sm">Orientation</Text>
-        <SegmentedControl
-          data={orientations}
-          value={tabs.values[TabsProps.orientation].value}
-          onChange={(value) => {
-            tabs.setValue(TabsProps.orientation, value);
-          }}
-        />
-      </Stack>
+      <LabeledSegmentedControl
+        label="Orientation"
+        data={orientations}
+        value={tabs.values[TabsProps.orientation].value}
+        onChange={(value) => {
+          tabs.setValue(TabsProps.orientation, value);
+        }}
+      />
     </>
   );
 };
@@ -98,8 +96,9 @@ const Settings = () => {
 export const MyTabs = () => {
   return (
     <ComponentsWrapper
-      isDirty={tabs.isDirty}
       label="Tabs"
+      isDirty={tabs.isDirty}
+      onReset={tabs.reset}
       component={<Component />}
       settings={<Settings />}
     />

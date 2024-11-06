@@ -1,5 +1,5 @@
 import { CodeHighlight } from "@mantine/code-highlight";
-import { Fieldset } from "@mantine/core";
+import { Box, Fieldset, Title } from "@mantine/core";
 import { colorTheme } from "../../store/ColorThemeStore";
 
 import { inputs } from "../../store/InputsStore";
@@ -9,7 +9,7 @@ import { pagination } from "../../store/PaginationStore";
 import { stepper } from "../../store/StepperStore";
 import { tabs } from "../../store/TabsStore";
 import { alert } from "../../store/AlertStore";
-import { newLoader } from "../../store/LoaderStore";
+import { loader } from "../../store/LoaderStore";
 import { notification } from "../../store/NotificationStore";
 import { progress } from "../../store/ProgressStore";
 import { ringProgress } from "../../store/RingProgressStore";
@@ -37,6 +37,7 @@ import { rating } from "../../store/RatingStore";
 import { fieldset } from "../../store/FieldsetStore";
 import { checkbox } from "../../store/CheckboxStore";
 import { chip } from "../../store/ChipStore";
+import { pill } from "../../store/ PillStore";
 
 export const ThemeObjectOutput = () => {
   const renderComponent = (
@@ -74,7 +75,7 @@ export const ThemeObjectOutput = () => {
     ${renderComponent("Stepper", stepper)}
     ${renderComponent("Tabs", tabs)}
     ${renderComponent("Alert", alert)}
-    ${renderComponent("Loader", newLoader)}
+    ${renderComponent("Loader", loader)}
     ${renderComponent("Notification", notification)}
     ${renderComponent("Progress", progress)}
     ${renderComponent("RingProgress", ringProgress)}
@@ -102,6 +103,7 @@ export const ThemeObjectOutput = () => {
     ${renderComponent("Fieldset", fieldset)}
     ${renderComponent("Checkbox", checkbox)}
     ${renderComponent("Chip", chip)}
+    ${renderComponent("Pill", pill)}
   },`.replace(/^(?:[\t ]*(?:\r?\n|\r))+/gm, "");
 
   const imports = `
@@ -113,9 +115,9 @@ export const ThemeObjectOutput = () => {
       : ""
   }${navLink.isDirty ? `, NavLink` : ""}${
     pagination.isDirty ? `, Pagination` : ""
-  }${stepper.isDirty ? `, Stepper` : ""}${tabs.isDirty ? `Tabs` : ""}${
+  }${stepper.isDirty ? `, Stepper` : ""}${tabs.isDirty ? `, Tabs` : ""}${
     alert.isDirty ? `, Alert` : ""
-  }${newLoader.isDirty ? `, Loader` : ""}${
+  }${loader.isDirty ? `, Loader` : ""}${
     notification.isDirty ? `, Notification` : ""
   }${progress.isDirty ? `, Progress` : ""}${
     ringProgress.isDirty ? `, RingProgress` : ""
@@ -137,7 +139,9 @@ export const ThemeObjectOutput = () => {
     rating.isDirty ? `, Rating` : ""
   }${fieldset.isDirty ? `, Fieldset` : ""}${
     checkbox.isDirty ? `, Checkbox` : ""
-  }${chip.isDirty ? `, Chip` : ""} } from "@mantine/core";`;
+  }${chip.isDirty ? `, Chip` : ""}${
+    pill.isDirty ? `, Pill` : ""
+  } } from "@mantine/core";`;
 
   const code = `
 ${imports}
@@ -160,8 +164,9 @@ export const theme = createTheme({
 });`;
 
   return (
-    <Fieldset legend="Theme object">
+    <Box>
+      <Title order={2}>Theme object</Title>
       <CodeHighlight language="ts" code={code} />
-    </Fieldset>
+    </Box>
   );
 };
