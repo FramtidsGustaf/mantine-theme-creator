@@ -1,19 +1,14 @@
-import {
-  AppShell,
-  Container,
-  Flex,
-  MantineProvider,
-  Stack,
-  Title,
-} from "@mantine/core";
+import { AppShell, Container, MantineProvider, Stack } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 
 import { ColorSection } from "./Components/ColorSection/ColorSection";
 import { ComponentsSection } from "./Components/ComponentsSection/ComponentsSection";
-import { ColorSchemeToggle } from "./Components/ColorSchemeToggle/ColorSchemeToggle";
 import { ThemeObjectOutput } from "./Components/ThemeObjectOutput/ThemeObjectOutput";
 
 import { useMyTheme } from "./hooks/useMyTheme";
+
+import { Hero } from "./Components/Hero/Hero";
+import { Header } from "./Components/Header/Header";
 
 function App() {
   const theme = useMyTheme();
@@ -24,14 +19,12 @@ function App() {
         <AppShell header={{ height: 60 }}>
           <AppShell.Main>
             <AppShell.Header>
-              <Flex align="center" h="100%" px="md" justify="space-between">
-                <Title order={2}>Mantine Theme Creator</Title>
-                <ColorSchemeToggle />
-              </Flex>
+              <Header />
             </AppShell.Header>
 
             <Container fluid px={{ base: "xs", sm: "xl" }} py="md">
-              <Stack gap="lg">
+              <Hero />
+              <Stack gap="lg" mt="xl">
                 <ColorSection />
                 <ComponentsSection />
                 <ThemeObjectOutput />
