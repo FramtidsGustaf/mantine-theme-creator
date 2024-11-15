@@ -1,6 +1,6 @@
 import { Box, Pill, Switch } from "@mantine/core";
 import { SizeAndRadiusSlider } from "../../SizeAndRadiusSlider/SizeAndRadiusSlider";
-import { pill, PillProps } from "../../../store/ PillStore";
+import { pill, PillProps } from "../../../store/PillStore";
 import { ComponentsWrapper } from "../ComponentsWrapper/ComponentsWrapper";
 
 const Component = () => {

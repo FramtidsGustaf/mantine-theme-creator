@@ -1,5 +1,5 @@
 import { CodeHighlight } from "@mantine/code-highlight";
-import { Box, Title } from "@mantine/core";
+import { Box, Title, ActionIcon, Group, Tooltip } from "@mantine/core";
 import { colorTheme } from "../../store/ColorThemeStore";
 
 import { inputs } from "../../store/InputsStore";
@@ -37,8 +37,9 @@ import { rating } from "../../store/RatingStore";
 import { fieldset } from "../../store/FieldsetStore";
 import { checkbox } from "../../store/CheckboxStore";
 import { chip } from "../../store/ChipStore";
-import { pill } from "../../store/ PillStore";
+import { pill } from "../../store/PillStore";
 import { angleSlider } from "../../store/AngleSliderStore";
+import { IconDownload } from "@tabler/icons-react";
 
 export const ThemeObjectOutput = () => {
   const renderComponent = (
@@ -108,8 +109,7 @@ export const ThemeObjectOutput = () => {
     ${renderComponent("AngleSlider", angleSlider)}
   },`.replace(/^(?:[\t ]*(?:\r?\n|\r))+/gm, "");
 
-  const imports = `
-  import { createTheme${
+  const imports = `import { createTheme${
     buttons.isDirty ? `, Button, ActionIcon, CloseButton` : ""
   }${
     inputs.isDirty
@@ -165,9 +165,20 @@ export const theme = createTheme({
   ${components}
 });`;
 
+  const blob = new Blob([code], { type: "text/plain" });
+
+  const url = URL.createObjectURL(blob);
+
   return (
     <Box>
-      <Title order={2}>Theme object</Title>
+      <Group>
+        <Title order={2}>Theme object</Title>
+        <Tooltip label="Download theme file">
+          <ActionIcon component="a" href={url} download="mtc-theme.ts">
+            <IconDownload />
+          </ActionIcon>
+        </Tooltip>
+      </Group>
       <CodeHighlight language="ts" code={code} />
     </Box>
   );

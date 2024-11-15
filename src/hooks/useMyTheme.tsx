@@ -89,7 +89,7 @@ import { rating } from "../store/RatingStore";
 import { fieldset } from "../store/FieldsetStore";
 import { checkbox } from "../store/CheckboxStore";
 import { chip } from "../store/ChipStore";
-import { pill } from "../store/ PillStore";
+import { pill } from "../store/PillStore";
 import { angleSlider } from "../store/AngleSliderStore";
 
 const mntInputs = {
