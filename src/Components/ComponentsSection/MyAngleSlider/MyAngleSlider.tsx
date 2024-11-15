@@ -14,6 +14,8 @@ const Settings = () => {
         sliderLabel="Size"
         value={angleSlider.values[AngleSliderProps.size].value}
         onChange={(value) => angleSlider.setValue(AngleSliderProps.size, value)}
+        max={200}
+        min={50}
       />
       <LabeledSlider
         sliderLabel="Thumb size"
@@ -21,6 +23,8 @@ const Settings = () => {
         onChange={(value) =>
           angleSlider.setValue(AngleSliderProps.thumbSize, value)
         }
+        max={100}
+        min={1}
       />
       <Switch
         label="With label"
