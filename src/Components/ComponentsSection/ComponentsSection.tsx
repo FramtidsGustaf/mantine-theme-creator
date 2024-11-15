@@ -35,12 +35,14 @@ import { MyFieldset } from "./MyFieldset/MyFieldset";
 import { MyCheckbox } from "./MyCheckbox/MyCheckbox";
 import { MyChip } from "./MyChip/MyChip";
 import { MyPill } from "./MyPill/MyPill";
+import { MyAngleSlider } from "./MyAngleSlider/MyAngleSlider";
 
 export const ComponentsSection = () => {
   return (
     <Box>
       <Title order={2}>Components</Title>
       <SimpleGrid cols={{ base: 1, xl: 2 }} spacing="xs">
+        <MyAngleSlider />
         <MyCheckbox />
         <MyChip />
         <MyFieldset />

@@ -38,6 +38,7 @@ import { fieldset } from "../../store/FieldsetStore";
 import { checkbox } from "../../store/CheckboxStore";
 import { chip } from "../../store/ChipStore";
 import { pill } from "../../store/ PillStore";
+import { angleSlider } from "../../store/AngleSliderStore";
 
 export const ThemeObjectOutput = () => {
   const renderComponent = (
@@ -104,6 +105,7 @@ export const ThemeObjectOutput = () => {
     ${renderComponent("Checkbox", checkbox)}
     ${renderComponent("Chip", chip)}
     ${renderComponent("Pill", pill)}
+    ${renderComponent("AngleSlider", angleSlider)}
   },`.replace(/^(?:[\t ]*(?:\r?\n|\r))+/gm, "");
 
   const imports = `
@@ -139,8 +141,8 @@ export const ThemeObjectOutput = () => {
     rating.isDirty ? `, Rating` : ""
   }${fieldset.isDirty ? `, Fieldset` : ""}${
     checkbox.isDirty ? `, Checkbox` : ""
-  }${chip.isDirty ? `, Chip` : ""}${
-    pill.isDirty ? `, Pill` : ""
+  }${chip.isDirty ? `, Chip` : ""}${pill.isDirty ? `, Pill` : ""}${
+    angleSlider.isDirty ? `, AngleSlider` : ""
   } } from "@mantine/core";`;
 
   const code = `

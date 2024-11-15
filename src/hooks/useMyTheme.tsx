@@ -49,6 +49,7 @@ import {
   Checkbox,
   Chip,
   Pill,
+  AngleSlider,
 } from "@mantine/core";
 import { useSignals } from "@preact/signals-react/runtime";
 
@@ -89,6 +90,7 @@ import { fieldset } from "../store/FieldsetStore";
 import { checkbox } from "../store/CheckboxStore";
 import { chip } from "../store/ChipStore";
 import { pill } from "../store/ PillStore";
+import { angleSlider } from "../store/AngleSliderStore";
 
 const mntInputs = {
   TextInput,
@@ -246,6 +248,9 @@ export const useMyTheme = () => {
       }),
       Pill: Pill.extend({
         defaultProps: pill.getDefaultProps,
+      }),
+      AngleSlider: AngleSlider.extend({
+        defaultProps: angleSlider.getDefaultProps,
       }),
     },
   });
